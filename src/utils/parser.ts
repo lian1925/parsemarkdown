@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as mkdirp from "mkdirp";
 import * as path from "path";
 import * as yaml from "js-yaml";
+import * as utils from "./index";
 
 /**
  *
@@ -90,7 +91,17 @@ export function parseMarkdown(file: string) {
             0,
             previewMatch[0].length - "<!-- more -->".length
           );
-    obj = { ...frontmatter, ...{ content, preview } };
+
+    // 日期格式处理，默认情况下显示时间提前8小时
+    let createAt = frontmatter.createAt;
+    let createAtFormat = new Date(createAt).getTime() - 1000 * 60 * 60 * 8;
+    createAt = utils.formatDateTime(createAtFormat);
+
+    let updateAt = frontmatter.updateAt;
+    let updateAtFormat = new Date(updateAt).getTime() - 1000 * 60 * 60 * 8;
+    updateAt = utils.formatDateTime(updateAtFormat);
+
+    obj = { ...frontmatter, ...{ content, preview }, createAt, updateAt };
 
     // console.log("preview", preview);
   } catch (error) {

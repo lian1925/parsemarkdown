@@ -1,9 +1,7 @@
-import * as Markdown from "markdown-it";
 import * as utils from "./utils";
 import globby from "globby";
 
 /**
- *
  *
  * @export 解析函数入口
  * @param {string} inputDir

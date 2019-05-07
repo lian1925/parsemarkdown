@@ -5,7 +5,7 @@
  * @param {string} str
  * @returns
  */
-export function formatDateTime(str: string) {
+export function formatDateTime(str: string | number) {
   const date = new Date(str);
   const y = date.getFullYear();
   const m = prefixNumber(date.getMonth() + 1);

@@ -13,7 +13,6 @@ var utils = require("./utils");
 var globby_1 = require("globby");
 /**
  *
- *
  * @export 解析函数入口
  * @param {string} inputDir
  * @param {string} outputDir

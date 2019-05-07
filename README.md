@@ -21,7 +21,7 @@ npm install parsemarkdown
 
 ```js
 // 引入库文件
-const { parser } = require("./dist/parser");
+const { parser } = require("parsemarkdown");
 
 // 定义输入与输出目录
 let inputDir = "./post/**/*.md";
@@ -47,7 +47,7 @@ parser(inputDir, outputDir);
 
 ```js
 // 引入库文件
-const { createMardownFile } = require("./dist/parser");
+const { createMardownFile } = require("parsemarkdown");
 
 // 获取命令行参数
 let argv = process.argv.slice(2);
@@ -66,7 +66,7 @@ createMardownFile(title, dir);
   }
 }
 
-3、用户在命令行执行创建操作
+3、用户在命令行执行创建文件操作
 语法：
 ```bash
 npm run new [title] [dirname]

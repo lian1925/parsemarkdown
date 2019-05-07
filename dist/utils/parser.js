@@ -16,6 +16,7 @@ var fs = require("fs");
 var mkdirp = require("mkdirp");
 var path = require("path");
 var yaml = require("js-yaml");
+var utils = require("./index");
 /**
  *
  *
@@ -96,7 +97,14 @@ function parseMarkdown(file) {
         var preview = previewMatch === null
             ? ""
             : previewMatch[0].substring(0, previewMatch[0].length - "<!-- more -->".length);
-        obj = __assign({}, frontmatter, { content: content, preview: preview });
+        // 日期格式处理，默认情况下显示时间提前8小时
+        var createAt = frontmatter.createAt;
+        var createAtFormat = new Date(createAt).getTime() - 1000 * 60 * 60 * 8;
+        createAt = utils.formatDateTime(createAtFormat);
+        var updateAt = frontmatter.updateAt;
+        var updateAtFormat = new Date(updateAt).getTime() - 1000 * 60 * 60 * 8;
+        updateAt = utils.formatDateTime(updateAtFormat);
+        obj = __assign({}, frontmatter, { content: content, preview: preview }, { createAt: createAt, updateAt: updateAt });
         // console.log("preview", preview);
     }
     catch (error) {
