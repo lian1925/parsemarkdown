@@ -113,4 +113,20 @@ function parseMarkdown(file) {
     return obj;
 }
 exports.parseMarkdown = parseMarkdown;
-//# sourceMappingURL=parser.js.map
+/**
+ *
+ *
+ * @export 处理目录字符串。示例："/post////"=> "/post"
+ * @param {string} dir
+ * @returns {string}
+ */
+function dirnameTrim(dir) {
+    if (dir[dir.length - 1] === "/") {
+        dir = dir.slice(0, dir.length - 1);
+        return dirnameTrim(dir);
+    }
+    else {
+        return dir;
+    }
+}
+exports.dirnameTrim = dirnameTrim;

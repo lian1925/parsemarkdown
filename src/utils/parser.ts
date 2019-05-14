@@ -109,3 +109,19 @@ export function parseMarkdown(file: string) {
   }
   return obj;
 }
+
+/**
+ *
+ *
+ * @export 处理目录字符串。示例："/post////"=> "/post"
+ * @param {string} dir
+ * @returns {string}
+ */
+export function dirnameTrim(dir: string): string {
+  if (dir[dir.length - 1] === "/") {
+    dir = dir.slice(0, dir.length - 1);
+    return dirnameTrim(dir);
+  } else {
+    return dir;
+  }
+}

@@ -10,6 +10,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var utils = require("./utils");
+// import globby = require("globby");
 var globby_1 = require("globby");
 /**
  *
@@ -20,7 +21,7 @@ var globby_1 = require("globby");
 function parser(inputDir, outputDir, mode) {
     if (mode === void 0) { mode = utils.DETAIL; }
     // 1 获取文件列表
-    globby_1.default([inputDir]).then(function (files) {
+    globby_1.default([inputDir], {}).then(function (files) {
         var fileMap = {};
         files.map(function (item) {
             // 2 计算创建文件列表
@@ -55,13 +56,14 @@ function createMardownFile(title, dir) {
     if (dir === void 0) { dir = "./post/tech"; }
     // 1 内容模版
     var content = "---\ntitle: " + title + "\ncreateAt: " + utils.formatDateTime(new Date().toISOString()) + "\nupdateAt: " + utils.formatDateTime(new Date().toISOString()) + "\ntags: \ncategory:\nauthor: \n---\n\n# " + title + "\n\n<!-- more -->\n";
+    var dirname = utils.dirnameTrim(dir);
+    console.log(dirname);
     // 2 写入文件
     try {
-        utils.writeFileContent(dir + "/" + title + ".md", content, function () { });
+        utils.writeFileContent(dirname + "/" + title + ".md", content, function () { });
     }
     catch (error) {
         console.log(error);
     }
 }
 exports.createMardownFile = createMardownFile;
-//# sourceMappingURL=index.js.map

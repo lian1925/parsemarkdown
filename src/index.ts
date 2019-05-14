@@ -1,4 +1,5 @@
 import * as utils from "./utils";
+// import globby = require("globby");
 import globby from "globby";
 
 /**
@@ -13,7 +14,7 @@ export function parser(
   mode: string = utils.DETAIL
 ) {
   // 1 获取文件列表
-  globby([inputDir]).then(files => {
+  globby([inputDir], {}).then(files => {
     let fileMap: any = {};
     files.map(item => {
       // 2 计算创建文件列表
@@ -66,9 +67,12 @@ author:
 <!-- more -->
 `;
 
+  let dirname = utils.dirnameTrim(dir);
+  console.log(dirname);
+
   // 2 写入文件
   try {
-    utils.writeFileContent(`${dir}/${title}.md`, content, () => {});
+    utils.writeFileContent(`${dirname}/${title}.md`, content, () => {});
   } catch (error) {
     console.log(error);
   }

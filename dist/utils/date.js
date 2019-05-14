@@ -30,4 +30,3 @@ function prefixNumber(num, length) {
     return (Array(length).join("0") + num).slice(-length);
 }
 exports.prefixNumber = prefixNumber;
-//# sourceMappingURL=date.js.map
